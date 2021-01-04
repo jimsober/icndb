@@ -1,0 +1,3 @@
+docker run -it --rm icndb-debian
+docker run --rm icndb-groovy
+docker run -it --rm icndb-ubuntu
