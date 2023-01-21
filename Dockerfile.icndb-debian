@@ -1,4 +1,0 @@
-FROM debian:jessie
-RUN apt-get update && apt-get install -y groovy
-COPY icndb.groovy /src/icndb.groovy
-ENTRYPOINT [ "./src/icndb.groovy"]
