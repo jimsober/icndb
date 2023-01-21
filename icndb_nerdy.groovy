@@ -1,28 +1,15 @@
 #!/usr/bin/env groovy
 import groovy.json.*
 
-//get list of categories
-//String base = 'http://api.icndb.com/categories'
-//String jsonTxt = "$base".toURL().text
-//println json.value
-
-//random excluding explicit category
-//String base = 'http://api.icndb.com/jokes/random?'
-//String jsonTxt = "$base".toURL().text
-//List excl_arr = ['explicit']
-//String excl = "&exclude=$excl_arr"
-//String jsonTxt = "$base$excl".toURL().text
-//println json.value.joke
-
 //loop until user quits
 again = true
 while (again) {
-    //random excluding explicit category passing first name and last name arguments
+    //random include only nerdy category passing first name and last name arguments
     int args_cnt = args.size()
     String base = 'http://api.icndb.com/jokes/random?'
-    List excl_arr = ['explicit']
-    String excl = "&exclude=$excl_arr"
-    String jsonTxtRaw = "$base$excl"
+    List incl_arr = ['nerdy']
+    String incl = "&category=$incl_arr"
+    String jsonTxtRaw = "$base$incl"
     try {
         assert args_cnt in [0,2]
         if (args_cnt == 2) {
