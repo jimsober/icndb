@@ -13,17 +13,25 @@ replacement = {  //remove brackets and quotes from json text
 jsonTxt = jsonTxt.collectReplacements(replacement)
 def categoryList = jsonTxt.split(',')*.trim() as List
 categoryList.remove('explicit')  //remove explicit category
+//copyCategoryList = categoryList.collect()  // debug only
 
 //loop until user quits
 again = true
 while (again) {
     categoryList.shuffle()
-//    String urlString = 'https://api.chucknorris.io/jokes/random?category={' + categoryList[0] + '}'
-    String urlString = 'https://api.chucknorris.io/jokes/random'  //workaround
+    String urlString = 'https://api.chucknorris.io/jokes/random?category=' + categoryList[0]
+//    String urlString = 'https://api.chucknorris.io/jokes/random?category=' + categoryList[0] + '&name=Chuck+Norris'
+    //
+//    println('DEBUG: urlString is ' + urlString)
     String urlText = "$urlString".toURL().text
     def json = new JsonSlurper().parseText(urlText)
     System.out.print("\033[H\033[2J")
     System.out.flush()
+    // begin debug
+//    println('DEBUG: choosing category from ' + copyCategoryList)
+//    println()
+//    println('DEBUG: category chosen is ' + categoryList[0])
+//    println()  // end debug
     println json.value
     println()
 
